@@ -10,19 +10,13 @@ i2c = I2C(0, scl=Pin(22), sda=Pin(21))
 oled = SSD1306_I2C(128, 64, i2c)
 DEBOUNCE_DELAY_MS = 200
 
-up_button = Pin(16, Pin.IN, Pin.PULL_UP)  # switch to match below													rx-black
-down_button = Pin(
-    17, Pin.IN, Pin.PULL_UP
-)  # switch to match above												tx - white
-select_button = Pin(
-    18, Pin.IN, Pin.PULL_UP
-)  # button to select match & get information ahade					blue
+up_button = Pin(16, Pin.IN, Pin.PULL_UP)  # switch to match below			rx-black
+down_button = Pin(17, Pin.IN, Pin.PULL_UP)  # switch to match above												tx - white
+select_button = Pin(18, Pin.IN, Pin.PULL_UP)  # button to select match & get information ahade					blue
 back_button = Pin(15, Pin.IN, Pin.PULL_UP)  # Added a "back" button												purple
 
 # Define the API URL for the GET request
-url = (
-    "https://api.cricapi.com/v1/currentMatches?apikey=___ ADD YOUR API HERE___&offset=0"
-)
+url = ("https://api.cricapi.com/v1/currentMatches?apikey=___ ADD YOUR API HERE___&offset=0")
 
 
 def clear_oled():
@@ -30,8 +24,8 @@ def clear_oled():
     oled.show()
 
 
-ssid = "viren"
-password = "12345678"
+ssid = "____ YOUR ____ SSID[WIFI NAME]_____"
+password = "____YOUR PASSWORD____"
 station = network.WLAN(network.STA_IF)
 station.active(True)
 station.connect(ssid, password)
@@ -44,7 +38,7 @@ while station.isconnected() == False:
     if select_button_state == 0:
         clear_oled()
         oled.text(f"Connecting to :", 0, 16)
-        oled.text(f"viren", 0, 32)
+        oled.text(f"wifi", 0, 32)
         oled.show()
         time.sleep(1)
         print("not connected")
@@ -55,7 +49,8 @@ while station.isconnected() == False:
 else:
     print("connected")
     clear_oled()
-    oled.text(f"Connected to viren:", 0, 24)
+    oled.text(f"Connected to :", 0, 24)
+    oled.text(f"WIFI", 0, 32)
     oled.show()
     time.sleep(1)
 
@@ -68,10 +63,10 @@ clear_oled()
 print("greet")
 oled.text(f"Created by Viren Modiyani", 0, 0)
 oled.text(f"         modiyani", 0, 8)
-oled.text(f"Sub. Teacher:", 0, 24)
-oled.text(f"Dr. Hiren Patel", 0, 32)
-oled.text(f"3EC83: EMBEDDED SYSTEMS AND IOT", 0, 48)
-oled.text(f"SYSTEMS AND IOT", 0, 56)
+oled.text(f"LINE 3", 0, 24)
+oled.text(f"LINE 4", 0, 32)
+oled.text(f"LINE 5", 0, 48)
+oled.text(f"LINE 6", 0, 56)
 oled.show()
 time.sleep(2)
 clear_oled()
